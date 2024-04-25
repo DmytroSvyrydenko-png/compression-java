@@ -1,5 +1,8 @@
-// 000RDB000 Jānis Programmētājs
-// 111RDB111 Ilze Programmētāja
+// 231RDB118 Dmytro Svyrydenko
+// 231RDC028 Ņikita Hess
+// 231RDB090 Iļja Grabovskis
+// 231RDB383 Jaroslavs Zaharenkovs
+
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -7,8 +10,6 @@ import java.util.Scanner;
 
 
 public class Main {
-
-
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		String choiseStr;
@@ -25,14 +26,14 @@ public class Main {
 				System.out.print("archive name: ");
 				resultFile = sc.next();
 				comp(sourceFile, resultFile);
-				break;
+                break;
 			case "decomp":
 				System.out.print("archive name: ");
 				sourceFile = sc.next();
 				System.out.print("file name: ");
 				resultFile = sc.next();
 				decomp(sourceFile, resultFile);
-				break;
+                break;
 			case "size":
 				System.out.print("file name: ");
 				sourceFile = sc.next();
@@ -57,11 +58,11 @@ public class Main {
 	}
 
 	public static void comp(String sourceFile, String resultFile) {
-		// TODO: implement this method
+		LZ77.compress(sourceFile, resultFile);
 	}
 
 	public static void decomp(String sourceFile, String resultFile) {
-		// TODO: implement this method
+		LZ77.decompress(sourceFile, resultFile);
 	}
 	
 	public static void size(String sourceFile) {
@@ -111,9 +112,23 @@ public class Main {
 	}
 	
 	public static void about() {
-		// TODO insert information about authors
-		System.out.println("000RDB000 Jānis Programmētājs");
-		System.out.println("111RDB111 Ilze Programmētāja");
+		System.out.println("231RDB118 Dmytro Svyrydenko");
+		System.out.println("231RDC028 Ņikita Hess");
+		System.out.println("231RDB090 Iļja Grabovskis");
+		System.out.println("231RDB383 Jaroslavs Zaharenkovs");
 	}
 }
 
+class LZ77 {
+
+    public static void compress(String sourceFile, String resultFile) {
+        
+    }
+    
+
+    public static void decompress(String sourceFile, String resultFile) {
+        
+    }
+    
+    
+}
