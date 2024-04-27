@@ -4,7 +4,11 @@
 // 231RDB383 Jaroslavs Zaharenkovs
 
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileInputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -122,7 +126,60 @@ public class Main {
 class LZ77 {
 
     public static void compress(String sourceFile, String resultFile) {
-        
+        StringBuilder compressedData = new StringBuilder();
+        int windowSize = 256;
+        int searchBufferStart = 0;
+
+        String data = readFile(sourceFile);
+
+        for (int i = 0; i < data.length(); i++) {
+            int matchLength = 0;
+            int matchDistance = 0;
+
+            for (int j = searchBufferStart; j < i && j < i - matchDistance; j++) {
+                int currentMatchLength = 0;
+                while (i + currentMatchLength < data.length() && data.charAt(i + currentMatchLength) == data.charAt(j + currentMatchLength)) {
+                    currentMatchLength++;
+                }
+
+                if (currentMatchLength > matchLength) {
+                    matchLength = currentMatchLength;
+                    matchDistance = i - j;
+                }
+            }
+
+            searchBufferStart = Math.max(searchBufferStart, i - windowSize + 1);
+
+            if (matchLength > 0) {
+                compressedData.append("(" + matchDistance + "," + matchLength + ")");
+                i += matchLength - 1;
+            } else {
+                compressedData.append(data.charAt(i));
+            }
+        }
+
+        writeStringToFile(compressedData.toString(), resultFile);
+    }
+
+    private static String readFile(String filePath) {
+        StringBuilder content = new StringBuilder();
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                content.append(line).append("\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return content.toString();
+    }
+
+    private static void writeStringToFile(String content, String filePath) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+            writer.write(content);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     
 
