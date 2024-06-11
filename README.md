@@ -1,5 +1,4 @@
 # compression-java
-s
 Izstrādāt programmu, kas ir paredzēta failu saspiešanai un dekodēšanai. Projektu ir atļauts izstrādāt grupās līdz 6 studentiem.
 
 <b>Saspiešanas algoritmus implementēt patstāvīgi, gatavas bibliotēkas, paredzētās datu saspiešanai, izmantot aizliegts.</b>
